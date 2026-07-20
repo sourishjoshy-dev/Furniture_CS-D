@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furniture Shop Inventory System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .welcome {
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem 0;
+        }
+        .button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .button:hover {
+            background-color: #555;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Furniture Shop Inventory System</h1>
+    </header>
+    <div class="container">
+        <div class="welcome">
+            <p>Welcome to the Furniture Shop Inventory System. Manage your furniture items with ease by adding, viewing, editing, or deleting items.</p>
+        </div>
+        <div class="buttons">
+            <a href="{% url 'add_item' %}" class="button">Add Item</a>
+            <a href="{% url 'view_items' %}" class="button">View Items</a>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 Furniture Shop. All rights reserved.</p>
+    </footer>
+</body>
+</html>
