@@ -44,7 +44,6 @@ def delete_item(request, item_id):
         return redirect('view_items')
     return render(request, 'delete_item.html', {'item': item})
 
-
 def signup_view(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
