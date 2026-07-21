@@ -1,7 +1,6 @@
 from django.db import models
 
 # Create your models here.
-from django.db import models
 
 class Furniture(models.Model):
     item_name = models.CharField(max_length=100)

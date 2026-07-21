@@ -1,9 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from.models import Furniture
-
-
-# Create your views here.
-from django.shortcuts import render
+from .models import Furniture
 
 def home(request):
     return render(request, 'home.html')
