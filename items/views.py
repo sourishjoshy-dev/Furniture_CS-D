@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Furniture
-
+from django.contrib.auth import login as auth_login
+from django.contrib.auth.forms import AuthenticationForm
+from .forms import SignUpForm
 def home(request):
     return render(request, 'home.html')
 
@@ -41,3 +43,26 @@ def delete_item(request, item_id):
         item.delete()
         return redirect('view_items')
     return render(request, 'delete_item.html', {'item': item})
+
+
+def signup_view(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = SignUpForm()
+    return render(request, 'signup.html', {'form': form})
+
+
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            auth_login(request, user)
+            return redirect('view_items')
+    else:
+        form = AuthenticationForm(request)
+    return render(request, 'login.html', {'form': form})
