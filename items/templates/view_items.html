@@ -63,6 +63,7 @@
 <body>
     <header>
         <h1>View Items</h1>
+        <p style="color: #fff; margin: 0;">Welcome, {{ user.username }} | <a href="{% url 'logout' %}" style="color: #fff;">Logout</a></p>
     </header>
     <div class="container">
         <div class="items-container">

@@ -1,11 +1,13 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Furniture
-from django.contrib.auth import login as auth_login
+from django.contrib.auth import login as auth_login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import SignUpForm
 def home(request):
     return render(request, 'home.html')
 
+@login_required
 def add_item(request):
     #  logic 
     if request.method == 'POST':
@@ -20,10 +22,12 @@ def add_item(request):
         return redirect('view_items')
     return render(request, 'add_item.html')
 
+@login_required
 def view_items(request):
     items = Furniture.objects.all()
     return render(request, 'view_items.html', {'items': items})
 
+@login_required
 def edit_item(request, item_id):
     item = get_object_or_404(Furniture, id=item_id)
     if request.method == 'POST':
@@ -37,6 +41,7 @@ def edit_item(request, item_id):
 
 
 
+@login_required
 def delete_item(request, item_id):
     item = get_object_or_404(Furniture, id=item_id)
     if request.method == 'POST':
@@ -54,6 +59,10 @@ def signup_view(request):
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
 
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
 
 def login_view(request):
     if request.method == 'POST':

@@ -60,6 +60,9 @@
 <body>
     <header>
         <h1>Furniture Shop Inventory System</h1>
+        {% if user.is_authenticated %}
+            <p style="color: #fff; margin: 0;">Welcome, {{ user.username }} | <a href="{% url 'logout' %}" style="color: #fff;">Logout</a></p>
+        {% endif %}
     </header>
     <div class="container">
         <div class="welcome">
@@ -67,10 +70,13 @@
         </div>
         
         <div class="buttons">
-            <a href="{% url 'signup' %}" class="button">Sign Up</a>
-            <a href="{% url 'login' %}" class="button">Login</a>
-            <a href="{% url 'add_item' %}" class="button">Add Item</a>
-            <a href="{% url 'view_items' %}" class="button">View Items</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'add_item' %}" class="button">Add Item</a>
+                <a href="{% url 'view_items' %}" class="button">View Items</a>
+            {% else %}
+                <a href="{% url 'signup' %}" class="button">Sign Up</a>
+                <a href="{% url 'login' %}" class="button">Login</a>
+            {% endif %}
         </div>
     </div>
     <footer>
